@@ -280,7 +280,7 @@ const MovieDetails = () => {
   return (
     <div className="min-h-screen bg-cs-bg text-cs-text pb-24 select-text">
       {/* ─── Hero Section with Full-Width Backdrop ───────────────────────────── */}
-      <div className="relative w-full h-[520px] sm:h-[620px] lg:h-[720px] overflow-hidden">
+      <div className="relative w-full h-[320px] sm:h-[520px] lg:h-[720px] overflow-hidden">
         {/* Backdrop Image */}
         {backdropUrl ? (
           <img
@@ -295,14 +295,14 @@ const MovieDetails = () => {
         {/* Cinematic Multi-layered Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-cs-bg via-cs-bg/75 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-cs-bg/95 via-cs-bg/50 to-transparent sm:w-3/4" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-cs-bg via-cs-bg to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-t from-cs-bg via-cs-bg to-transparent" />
       </div>
 
       {/* ─── Main Content Container ─────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-80 sm:-mt-96 lg:-mt-[460px] relative z-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-44 sm:-mt-80 lg:-mt-[460px] relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
           {/* Left Column: Poster & Quick Primary Actions */}
-          <div className="lg:col-span-4 flex flex-col items-center lg:items-start max-w-[320px] sm:max-w-[360px] mx-auto lg:mx-0 w-full">
+          <div className="lg:col-span-4 flex flex-col items-center lg:items-start max-w-[200px] sm:max-w-[280px] lg:max-w-[360px] mx-auto lg:mx-0 w-full">
             {/* Poster Card */}
             <div className="relative w-full aspect-[2/3] rounded-2xl overflow-hidden bg-cs-card border-2 border-cs-border shadow-cs-lg group">
               {posterUrl ? (
@@ -320,23 +320,23 @@ const MovieDetails = () => {
 
               {/* Top content rating tag pill */}
               {contentRating && (
-                <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-md text-xs font-black uppercase tracking-wider bg-black/75 backdrop-blur-md border border-white/20 text-white shadow-lg">
+                <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md text-[10px] sm:text-xs font-black uppercase tracking-wider bg-black/75 backdrop-blur-md border border-white/20 text-white shadow-lg">
                   {contentRating}
                 </div>
               )}
             </div>
 
             {/* Primary Action Buttons (Under Poster) */}
-            <div className="w-full space-y-3 mt-5">
+            <div className="w-full space-y-2 sm:space-y-3 mt-4 sm:mt-5">
               {/* Watch Trailer Button (if video available) */}
               {trailerUrl && (
                 <button
                   type="button"
                   onClick={() => setTrailerOpen(true)}
-                  className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl font-bold text-sm bg-cs-accent hover:bg-yellow-400 text-black shadow-cs-accent/30 shadow-lg hover:shadow-cs-accent/50 transition-all duration-200 active:scale-95 group"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm bg-cs-accent hover:bg-yellow-400 text-black shadow-cs-accent/30 shadow-lg hover:shadow-cs-accent/50 transition-all duration-200 active:scale-95 group"
                 >
-                  <div className="w-6 h-6 rounded-full bg-black/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play size={13} className="fill-black text-black ml-0.5" />
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-black/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={11} className="fill-black text-black ml-0.5" />
                   </div>
                   <span>Watch Official Trailer</span>
                 </button>
@@ -348,7 +348,7 @@ const MovieDetails = () => {
                 mediaType="movie"
                 movieData={movie}
                 variant="button"
-                className="w-full py-3.5"
+                className="w-full py-2.5 sm:py-3.5 text-xs sm:text-sm"
               />
 
               {/* Log to Diary Button */}
@@ -361,18 +361,18 @@ const MovieDetails = () => {
                   }
                   setDiaryModalOpen(true)
                 }}
-                className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl font-bold text-xs bg-cs-card hover:bg-cs-bg-secondary border border-cs-border hover:border-cs-accent/50 text-cs-text hover:text-cs-accent transition-all duration-200 group shadow-sm active:scale-95"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs bg-cs-card hover:bg-cs-bg-secondary border border-cs-border hover:border-cs-accent/50 text-cs-text hover:text-cs-accent transition-all duration-200 group shadow-sm active:scale-95"
               >
-                <BookOpen size={15} className="text-cs-accent group-hover:scale-110 transition-transform" />
+                <BookOpen size={14} className="text-cs-accent group-hover:scale-110 transition-transform" />
                 <span>{diaryLoggedCount > 0 ? `Logged in Diary (${diaryLoggedCount}x)` : 'Log to Diary'}</span>
               </button>
 
               {/* Share & Quick links */}
-              <div className="flex items-center gap-2 pt-1">
+              <div className="flex items-center gap-2 pt-0.5 sm:pt-1">
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cs-card hover:bg-cs-bg-secondary border border-cs-border text-cs-text-secondary hover:text-cs-text text-xs font-semibold transition-all"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl bg-cs-card hover:bg-cs-bg-secondary border border-cs-border text-cs-text-secondary hover:text-cs-text text-xs font-semibold transition-all"
                   title="Copy movie link"
                 >
                   {copiedLink ? (

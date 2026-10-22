@@ -289,46 +289,46 @@ const Discover = () => {
       {/* ──────────────────────────────────────────────────────────────────────── */}
       {/* FILTER CONTROL PANEL                                                     */}
       {/* ──────────────────────────────────────────────────────────────────────── */}
-      <section className="bg-cs-card/80 border border-cs-border rounded-3xl p-5 sm:p-7 backdrop-blur-md shadow-cs space-y-6">
+      <section className="bg-cs-card/80 border border-cs-border rounded-2xl sm:rounded-3xl p-4 sm:p-7 backdrop-blur-md shadow-cs space-y-5 sm:space-y-6">
         {/* Row 1: Media Type & Sort & Apply / Reset buttons */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-cs-border/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 sm:pb-5 border-b border-cs-border/80">
           {/* Media Type Toggle: Movies / TV */}
-          <div className="flex items-center gap-2 p-1 bg-cs-bg-secondary rounded-xl border border-cs-border w-fit">
+          <div className="flex items-center gap-1.5 p-1 bg-cs-bg-secondary rounded-xl border border-cs-border w-full sm:w-fit justify-center">
             <button
               type="button"
               onClick={() => handleMediaTypeChange('movie')}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+              className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
                 mediaType === 'movie'
                   ? 'bg-cs-accent text-cs-bg shadow-cs-accent shadow-sm'
                   : 'text-cs-text-secondary hover:text-white'
               }`}
             >
-              <Film size={15} />
+              <Film size={14} />
               <span>Movies</span>
             </button>
             <button
               type="button"
               onClick={() => handleMediaTypeChange('tv')}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+              className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
                 mediaType === 'tv'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'text-cs-text-secondary hover:text-white'
               }`}
             >
-              <Tv size={15} />
+              <Tv size={14} />
               <span>TV Shows</span>
             </button>
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             {hasActiveFilters && (
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-cs-bg-secondary hover:bg-cs-border/40 text-cs-text-secondary hover:text-white text-xs sm:text-sm font-semibold transition-all border border-cs-border"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-cs-bg-secondary hover:bg-cs-border/40 text-cs-text-secondary hover:text-white text-xs sm:text-sm font-semibold transition-all border border-cs-border"
               >
-                <RotateCcw size={14} />
+                <RotateCcw size={13} />
                 <span>Reset</span>
               </button>
             )}
@@ -336,9 +336,9 @@ const Discover = () => {
             <button
               type="button"
               onClick={handleApplyFilters}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-cs-accent text-cs-bg text-xs sm:text-sm font-bold hover:bg-yellow-400 active:scale-95 transition-all shadow-cs-accent shadow-sm"
+              className="flex-[2] sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-cs-accent text-cs-bg text-xs sm:text-sm font-bold hover:bg-yellow-400 active:scale-95 transition-all shadow-cs-accent shadow-sm"
             >
-              <Sliders size={15} className="stroke-[2.5]" />
+              <Sliders size={14} className="stroke-[2.5]" />
               <span>Apply Filters</span>
             </button>
           </div>
@@ -434,11 +434,22 @@ const Discover = () => {
         </div>
 
         {/* Row 3: Genre Multi-Select Pills */}
-        <div className="pt-2">
-          <label className="block text-xs font-bold uppercase tracking-wider text-cs-text-secondary mb-2.5">
-            Select Genres ({selectedGenres.length} selected)
-          </label>
-          <div className="flex flex-wrap gap-2">
+        <div className="pt-1 sm:pt-2">
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-cs-text-secondary">
+              Select Genres {selectedGenres.length > 0 && `(${selectedGenres.length})`}
+            </label>
+            {selectedGenres.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setSelectedGenres([])}
+                className="text-[11px] text-cs-accent hover:underline font-medium"
+              >
+                Clear all
+              </button>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 max-h-36 sm:max-h-none overflow-y-auto pr-1">
             {genreList.map((g) => {
               const isSelected = selectedGenres.includes(g.id.toString())
               return (
@@ -446,13 +457,13 @@ const Discover = () => {
                   key={g.id}
                   type="button"
                   onClick={() => handleGenreToggle(g.id)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all ${
+                  className={`inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-medium border transition-all ${
                     isSelected
                       ? 'bg-cs-accent text-cs-bg border-cs-accent font-bold shadow-cs-accent'
                       : 'bg-cs-bg-secondary border-cs-border text-cs-text-secondary hover:text-white hover:border-cs-border/80'
                   }`}
                 >
-                  {isSelected && <Check size={12} className="stroke-[3]" />}
+                  {isSelected && <Check size={11} className="stroke-[3]" />}
                   <span>{g.name}</span>
                 </button>
               )

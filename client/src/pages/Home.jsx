@@ -182,40 +182,40 @@ const Home = () => {
       {/* 1. CINEMATIC HERO SECTION                                                */}
       {/* ──────────────────────────────────────────────────────────────────────── */}
       {loading ? (
-        <div className="relative w-full h-[70vh] sm:h-[80vh] md:h-[85vh] bg-cs-bg-secondary skeleton flex items-end">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16 space-y-4">
-            <div className="h-6 w-36 bg-cs-card rounded skeleton" />
-            <div className="h-12 w-2/3 max-w-xl bg-cs-card rounded skeleton" />
-            <div className="h-4 w-96 bg-cs-card rounded skeleton" />
-            <div className="h-16 w-full max-w-lg bg-cs-card rounded skeleton" />
-            <div className="flex gap-4 pt-2">
-              <div className="h-12 w-36 bg-cs-card rounded-lg skeleton" />
-              <div className="h-12 w-36 bg-cs-card rounded-lg skeleton" />
+        <div className="relative w-full h-[58vh] min-h-[420px] sm:h-[80vh] md:h-[85vh] bg-cs-bg-secondary skeleton flex items-end">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10 sm:pb-16 space-y-3 sm:space-y-4">
+            <div className="h-5 sm:h-6 w-28 sm:w-36 bg-cs-card rounded skeleton" />
+            <div className="h-8 sm:h-12 w-3/4 max-w-xl bg-cs-card rounded skeleton" />
+            <div className="h-3 sm:h-4 w-64 sm:w-96 bg-cs-card rounded skeleton" />
+            <div className="h-10 sm:h-16 w-full max-w-lg bg-cs-card rounded skeleton" />
+            <div className="flex gap-2 sm:gap-4 pt-1 sm:pt-2">
+              <div className="h-9 sm:h-12 w-28 sm:w-36 bg-cs-card rounded-lg skeleton" />
+              <div className="h-9 sm:h-12 w-24 sm:w-36 bg-cs-card rounded-lg skeleton" />
             </div>
           </div>
         </div>
       ) : heroMovie ? (
-        <section className="relative w-full h-[75vh] sm:h-[82vh] md:h-[88vh] select-none flex items-end overflow-hidden">
+        <section className="relative w-full h-[62vh] min-h-[460px] sm:h-[82vh] md:h-[88vh] select-none flex items-end overflow-hidden">
           {/* Backdrop Image */}
           <div className="absolute inset-0">
             <img
               src={getBackdropUrl(heroMovie.backdrop_path, 'original') || getBackdropUrl(heroMovie.backdrop_path, 'w1280')}
               alt={heroMovie.title || 'Featured Movie'}
-              className="w-full h-full object-cover object-center scale-105 animate-fade-in filter brightness-[0.85]"
+              className="w-full h-full object-cover object-center scale-105 animate-fade-in filter brightness-[0.82]"
             />
             {/* Multi-layered cinematic vignettes */}
-            <div className="absolute inset-0 bg-gradient-to-t from-cs-bg via-cs-bg/60 to-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-r from-cs-bg via-cs-bg/85 md:via-cs-bg/60 to-transparent w-full md:w-3/4" />
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-cs-bg via-cs-bg/90 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-cs-bg via-cs-bg/70 sm:via-cs-bg/60 to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-cs-bg via-cs-bg/90 sm:via-cs-bg/75 md:via-cs-bg/60 to-transparent w-full md:w-3/4" />
+            <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 bg-gradient-to-t from-cs-bg via-cs-bg/95 to-transparent" />
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 sm:pb-16 md:pb-20">
-            <div className="max-w-2xl space-y-3 sm:space-y-4">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-8 sm:pb-16 md:pb-20">
+            <div className="max-w-2xl space-y-2 sm:space-y-4">
               {/* Badge row: Spotlight + Rating + Year */}
-              <div className="flex flex-wrap items-center gap-2.5 text-xs sm:text-sm font-semibold">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-cs-accent text-cs-bg uppercase tracking-wider text-[11px] font-bold shadow-cs-accent">
-                  <Sparkles size={12} className="stroke-[2.5]" />
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2.5 text-xs sm:text-sm font-semibold">
+                <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-cs-accent text-cs-bg uppercase tracking-wider text-[10px] sm:text-[11px] font-bold shadow-cs-accent">
+                  <Sparkles size={11} className="stroke-[2.5]" />
                   <span>Trending #{heroIndex + 1}</span>
                 </span>
 
@@ -223,7 +223,7 @@ const Home = () => {
                   <RatingBadge rating={heroMovie.vote_average} size="sm" showOutOf />
                 )}
 
-                <span className="text-cs-text-secondary font-medium">
+                <span className="text-cs-text-secondary font-medium text-xs sm:text-sm">
                   {formatYear(heroMovie.release_date)}
                 </span>
 
@@ -239,36 +239,36 @@ const Home = () => {
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-md leading-[1.1]">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-md leading-[1.15]">
                 {heroMovie.title}
               </h1>
 
               {/* Overview */}
-              <p className="text-sm sm:text-base text-cs-text-secondary line-clamp-3 sm:line-clamp-3 leading-relaxed drop-shadow-sm max-w-xl">
+              <p className="text-xs sm:text-base text-cs-text-secondary line-clamp-2 sm:line-clamp-3 leading-relaxed drop-shadow-sm max-w-xl">
                 {heroMovie.overview || 'Explore the complete cast, community reviews, and high-resolution media for this featured title on CineScope.'}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-1 sm:pt-2">
                 {/* Watch Trailer */}
                 <button
                   type="button"
                   onClick={handleWatchTrailer}
                   disabled={loadingTrailer}
-                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-cs-accent text-cs-bg font-bold text-sm sm:text-base hover:bg-yellow-400 active:scale-95 transition-all shadow-lg hover:shadow-cs-accent/40"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl bg-cs-accent text-cs-bg font-bold text-xs sm:text-base hover:bg-yellow-400 active:scale-95 transition-all shadow-lg hover:shadow-cs-accent/40"
                   aria-label="Watch Trailer"
                 >
-                  <Play size={18} className="fill-cs-bg stroke-none" />
-                  <span>{loadingTrailer ? 'Loading...' : 'Watch Trailer'}</span>
+                  <Play size={15} className="fill-cs-bg stroke-none" />
+                  <span>{loadingTrailer ? 'Loading...' : 'Trailer'}</span>
                 </button>
 
                 {/* View Details */}
                 <Link
                   to={`/movie/${heroMovie.id}`}
-                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-cs-card/80 backdrop-blur-md border border-cs-border hover:border-cs-accent/60 text-cs-text hover:text-white font-semibold text-sm sm:text-base hover:bg-cs-card active:scale-95 transition-all shadow-md"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl bg-cs-card/80 backdrop-blur-md border border-cs-border hover:border-cs-accent/60 text-cs-text hover:text-white font-semibold text-xs sm:text-base hover:bg-cs-card active:scale-95 transition-all shadow-md"
                   aria-label="View Details"
                 >
-                  <Info size={18} />
+                  <Info size={15} />
                   <span>Details</span>
                 </Link>
 
@@ -278,20 +278,21 @@ const Home = () => {
                   mediaType="movie"
                   movieData={heroMovie}
                   variant="button"
-                  size="md"
+                  size="sm"
+                  className="!px-3 !py-2 sm:!px-4 sm:!py-3 !text-xs sm:!text-sm"
                 />
               </div>
 
               {/* Hero Slide Selector Dots (Top 5 trending) */}
               {trendingMovies.length > 1 && (
-                <div className="flex items-center gap-2 pt-3">
+                <div className="flex items-center gap-1.5 sm:gap-2 pt-2 sm:pt-3">
                   {trendingMovies.slice(0, 5).map((m, idx) => (
                     <button
                       key={m.id || idx}
                       onClick={() => setHeroIndex(idx)}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
                         idx === heroIndex
-                          ? 'w-8 bg-cs-accent shadow-cs-accent'
+                          ? 'w-6 sm:w-8 bg-cs-accent shadow-cs-accent'
                           : 'w-2 bg-white/30 hover:bg-white/60'
                       }`}
                       aria-label={`Go to slide ${idx + 1}`}

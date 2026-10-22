@@ -239,13 +239,13 @@ const Movies = () => {
         </div>
 
         {/* Mobile Filter Button & Quick Sort */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setShowMobileFilters(true)}
-            className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cs-card border border-cs-border hover:border-cs-accent/50 text-cs-text text-sm font-semibold transition-all active:scale-95 shadow-sm"
+            className="lg:hidden inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cs-card border border-cs-border hover:border-cs-accent/50 text-cs-text text-xs sm:text-sm font-semibold transition-all active:scale-95 shadow-sm"
           >
-            <SlidersHorizontal size={16} className="text-cs-accent" />
+            <SlidersHorizontal size={14} className="text-cs-accent" />
             <span>Filters</span>
             {hasActiveFilters && (
               <span className="w-2 h-2 rounded-full bg-cs-accent animate-pulse" />
@@ -253,14 +253,14 @@ const Movies = () => {
           </button>
 
           {/* Quick Sort Dropdown on Top */}
-          <div className="relative flex items-center">
-            <div className="absolute left-3 pointer-events-none text-cs-text-secondary">
-              <ArrowUpDown size={14} />
+          <div className="relative flex items-center flex-1 sm:flex-none max-w-[200px]">
+            <div className="absolute left-2.5 sm:left-3 pointer-events-none text-cs-text-secondary">
+              <ArrowUpDown size={13} />
             </div>
             <select
               value={selectedSort}
               onChange={handleSortChange}
-              className="pl-9 pr-8 py-2.5 bg-cs-card border border-cs-border hover:border-cs-accent/40 rounded-xl text-xs sm:text-sm font-medium text-cs-text focus:outline-none focus:border-cs-accent cursor-pointer transition-colors appearance-none"
+              className="w-full pl-8 sm:pl-9 pr-6 sm:pr-8 py-2 sm:py-2.5 bg-cs-card border border-cs-border hover:border-cs-accent/40 rounded-xl text-xs sm:text-sm font-medium text-cs-text focus:outline-none focus:border-cs-accent cursor-pointer transition-colors appearance-none"
             >
               {SORT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -270,6 +270,38 @@ const Movies = () => {
             </select>
           </div>
         </div>
+      </div>
+
+      {/* Quick Swipeable Genre Chips for Mobile Screens */}
+      <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+        <button
+          type="button"
+          onClick={() => handleGenreChange('')}
+          className={`shrink-0 text-xs px-3 py-1.5 rounded-full border transition-all ${
+            !selectedGenre
+              ? 'bg-cs-accent text-cs-bg border-cs-accent font-bold shadow-sm'
+              : 'bg-cs-card border-cs-border text-cs-text-secondary hover:text-cs-text'
+          }`}
+        >
+          All
+        </button>
+        {genres.map((g) => {
+          const isActive = selectedGenre === g.id.toString()
+          return (
+            <button
+              key={g.id}
+              type="button"
+              onClick={() => handleGenreChange(g.id.toString())}
+              className={`shrink-0 text-xs px-3 py-1.5 rounded-full border transition-all ${
+                isActive
+                  ? 'bg-cs-accent text-cs-bg border-cs-accent font-bold shadow-sm'
+                  : 'bg-cs-card border-cs-border text-cs-text-secondary hover:text-cs-text'
+              }`}
+            >
+              {g.name}
+            </button>
+          )
+        })}
       </div>
 
       {/* ──────────────────────────────────────────────────────────────────────── */}

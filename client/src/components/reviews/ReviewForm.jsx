@@ -183,7 +183,7 @@ const ReviewForm = ({
 
         <div className="flex flex-wrap items-center gap-2">
           <div
-            className="flex items-center gap-1 p-1.5 bg-cs-bg-secondary rounded-xl border border-cs-border/60"
+            className="flex items-center gap-0.5 sm:gap-1 p-1 sm:p-1.5 bg-cs-bg-secondary rounded-xl border border-cs-border/60 max-w-full overflow-x-auto"
             onMouseLeave={() => setHoverRating(0)}
           >
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((star) => {
@@ -194,12 +194,12 @@ const ReviewForm = ({
                   type="button"
                   onClick={() => setValue('rating', star, { shouldValidate: true })}
                   onMouseEnter={() => setHoverRating(star)}
-                  className="p-1 rounded hover:scale-110 transition-transform focus:outline-none focus:ring-1 focus:ring-cs-accent/60"
+                  className="p-0.5 sm:p-1 rounded hover:scale-110 active:scale-95 transition-transform focus:outline-none focus:ring-1 focus:ring-cs-accent/60 shrink-0"
                   aria-label={`Select ${star} stars`}
                 >
                   <Star
-                    size={18}
-                    className={`transition-colors ${
+                    size={16}
+                    className={`transition-colors sm:w-[18px] sm:h-[18px] ${
                       isLit
                         ? 'fill-cs-accent text-cs-accent drop-shadow-[0_0_4px_rgba(245,197,24,0.3)]'
                         : 'text-cs-border fill-transparent'
@@ -212,7 +212,7 @@ const ReviewForm = ({
 
           {/* Rating label feedback */}
           {(hoverRating || currentRating) > 0 && (
-            <span className="text-xs font-semibold text-cs-accent bg-cs-bg-secondary px-2.5 py-1 rounded-lg border border-cs-border/60 animate-fade-in">
+            <span className="text-xs font-semibold text-cs-accent bg-cs-bg-secondary px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg border border-cs-border/60 animate-fade-in">
               {RATING_DESCRIPTIONS[hoverRating || currentRating]}
             </span>
           )}

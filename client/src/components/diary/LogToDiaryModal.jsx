@@ -142,34 +142,34 @@ const LogToDiaryModal = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
       <div
-        className="relative w-full max-w-lg bg-cs-card border border-cs-border rounded-3xl shadow-cs-lg overflow-hidden flex flex-col max-h-[90vh] animate-scale-up"
+        className="relative w-full max-w-lg bg-cs-card border border-cs-border rounded-2xl sm:rounded-3xl shadow-cs-lg overflow-hidden flex flex-col max-h-[92vh] animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with Movie Brief */}
-        <div className="flex items-center justify-between p-5 border-b border-cs-border bg-cs-bg-secondary/50">
-          <div className="flex items-center gap-3.5 min-w-0">
+        <div className="flex items-center justify-between p-3.5 sm:p-5 border-b border-cs-border bg-cs-bg-secondary/50">
+          <div className="flex items-center gap-3 min-w-0">
             {posterUrl ? (
               <img
                 src={posterUrl}
                 alt={movieTitle}
-                className="w-12 h-16 object-cover rounded-lg border border-cs-border shrink-0 shadow-md"
+                className="w-10 sm:w-12 h-14 sm:h-16 object-cover rounded-lg border border-cs-border shrink-0 shadow-md"
               />
             ) : (
-              <div className="w-12 h-16 bg-cs-border/40 rounded-lg flex items-center justify-center shrink-0">
-                <BookOpen size={20} className="text-cs-accent" />
+              <div className="w-10 sm:w-12 h-14 sm:h-16 bg-cs-border/40 rounded-lg flex items-center justify-center shrink-0">
+                <BookOpen size={18} className="text-cs-accent" />
               </div>
             )}
             <div className="min-w-0">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-cs-accent">
+              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-cs-accent">
                 {isEditing ? 'Edit Diary Entry' : 'Log Film to Diary'}
               </span>
-              <h3 className="text-base font-black text-cs-text truncate">
+              <h3 className="text-sm sm:text-base font-black text-cs-text truncate">
                 {movieTitle}
               </h3>
               {releaseDate && (
-                <p className="text-xs text-cs-text-secondary">
+                <p className="text-[11px] sm:text-xs text-cs-text-secondary truncate">
                   {releaseDate.substring(0, 4)} • {mediaType === 'tv' ? 'TV Series' : 'Feature Film'}
                 </p>
               )}
@@ -179,7 +179,7 @@ const LogToDiaryModal = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-cs-text-secondary hover:text-cs-text hover:bg-cs-border/30 rounded-xl transition-colors shrink-0"
+            className="p-1.5 sm:p-2 text-cs-text-secondary hover:text-cs-text hover:bg-cs-border/30 rounded-xl transition-colors shrink-0"
             aria-label="Close"
           >
             <X size={18} />
@@ -187,11 +187,11 @@ const LogToDiaryModal = ({
         </div>
 
         {/* Scrollable Form Body */}
-        <form onSubmit={handleSubmit} className="overflow-y-auto p-5 space-y-5">
+        <form onSubmit={handleSubmit} className="overflow-y-auto p-4 sm:p-5 space-y-4 sm:space-y-5">
           {/* Watched Date */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-cs-text-secondary mb-2 flex items-center gap-1.5">
-              <Calendar size={14} className="text-cs-accent" />
+            <label className="block text-xs font-semibold uppercase tracking-wider text-cs-text-secondary mb-1.5 sm:mb-2 flex items-center gap-1.5">
+              <Calendar size={13} className="text-cs-accent" />
               <span>Date Watched</span>
             </label>
             <input
@@ -199,15 +199,15 @@ const LogToDiaryModal = ({
               value={watchedDate}
               onChange={(e) => setWatchedDate(e.target.value)}
               required
-              className="w-full bg-cs-bg-secondary border border-cs-border rounded-xl px-4 py-2.5 text-sm text-cs-text focus:outline-none focus:border-cs-accent transition-colors"
+              className="w-full bg-cs-bg-secondary border border-cs-border rounded-xl px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-cs-text focus:outline-none focus:border-cs-accent transition-colors"
             />
           </div>
 
           {/* Rating (1 - 10) */}
           <div>
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-1.5 sm:mb-2">
               <label className="text-xs font-semibold uppercase tracking-wider text-cs-text-secondary flex items-center gap-1.5">
-                <Star size={14} className="text-cs-accent" />
+                <Star size={13} className="text-cs-accent" />
                 <span>Your Rating</span>
               </label>
               <span className="text-xs font-bold text-cs-accent">
@@ -215,8 +215,8 @@ const LogToDiaryModal = ({
               </span>
             </div>
 
-            <div className="flex items-center justify-between p-2.5 bg-cs-bg-secondary rounded-xl border border-cs-border">
-              <div className="flex items-center gap-1 flex-1">
+            <div className="flex items-center justify-between p-2 sm:p-2.5 bg-cs-bg-secondary rounded-xl border border-cs-border overflow-x-auto">
+              <div className="flex items-center gap-0.5 sm:gap-1 flex-1 min-w-[200px]">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((starVal) => {
                   const active = (hoverRating || rating) >= starVal
                   return (
@@ -226,10 +226,10 @@ const LogToDiaryModal = ({
                       onMouseEnter={() => setHoverRating(starVal)}
                       onMouseLeave={() => setHoverRating(0)}
                       onClick={() => setRating(rating === starVal ? 0 : starVal)}
-                      className="p-1 hover:scale-125 transition-transform focus:outline-none"
+                      className="p-0.5 sm:p-1 hover:scale-110 active:scale-95 transition-transform focus:outline-none shrink-0"
                     >
                       <Star
-                        size={18}
+                        size={15}
                         className={
                           active
                             ? 'text-amber-400 fill-amber-400'
@@ -244,7 +244,7 @@ const LogToDiaryModal = ({
                 <button
                   type="button"
                   onClick={() => setRating(0)}
-                  className="text-[11px] text-cs-text-secondary hover:text-cs-error ml-2"
+                  className="text-[11px] text-cs-text-secondary hover:text-cs-error ml-2 shrink-0 font-medium"
                 >
                   Clear
                 </button>
@@ -366,19 +366,19 @@ const LogToDiaryModal = ({
           </div>
 
           {/* Footer Submit */}
-          <div className="pt-2 flex items-center justify-end gap-3 border-t border-cs-border">
+          <div className="pt-2 flex items-center justify-end gap-2.5 border-t border-cs-border">
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="px-4 py-2.5 rounded-xl border border-cs-border text-xs font-semibold text-cs-text-secondary hover:text-cs-text hover:bg-cs-bg-secondary transition-colors"
+              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-cs-border text-xs font-semibold text-cs-text-secondary hover:text-cs-text hover:bg-cs-bg-secondary transition-colors text-center"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs bg-cs-accent hover:bg-yellow-400 text-black shadow-cs-accent/25 shadow-md hover:shadow-cs-accent/40 transition-all active:scale-95 disabled:opacity-50"
+              className="flex-[2] sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs bg-cs-accent hover:bg-yellow-400 text-black shadow-cs-accent/25 shadow-md hover:shadow-cs-accent/40 transition-all active:scale-95 disabled:opacity-50 text-center"
             >
               {submitting ? (
                 <>
