@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0B0D12;
+    color: #F5F5F5;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #121620;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #292F3B;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4355;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+  }
+
+  ::selection {
+    background: rgba(245, 197, 24, 0.3);
+    color: #F5F5F5;
+  }
+}
+
+@layer components {
+  /* Skeleton shimmer loading animation */
+  .skeleton {
+    @apply bg-cs-card animate-pulse rounded;
+    background: linear-gradient(
+      90deg,
+      #181D29 25%,
+      #1e2535 50%,
+      #181D29 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Card hover effect */
+  .movie-card {
+    @apply bg-cs-card rounded-xl overflow-hidden transition-all duration-300 cursor-pointer;
+    @apply border border-cs-border hover:border-cs-accent/30;
+  }
+
+  .movie-card:hover {
+    transform: translateY(-4px);
+    @apply shadow-cs-lg;
+  }
+
+  /* Gradient overlay for hero sections */
+  .hero-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(11, 13, 18, 0.98) 0%,
+      rgba(11, 13, 18, 0.85) 50%,
+      rgba(11, 13, 18, 0.3) 100%
+    );
+  }
+
+  .hero-overlay-bottom {
+    background: linear-gradient(
+      to top,
+      rgba(11, 13, 18, 1) 0%,
+      rgba(11, 13, 18, 0.5) 30%,
+      transparent 100%
+    );
+  }
+
+  /* Section heading style */
+  .section-title {
+    @apply text-2xl font-bold text-cs-text;
+    @apply flex items-center gap-3;
+  }
+
+  .section-title::before {
+    content: '';
+    @apply block w-1 h-6 bg-cs-accent rounded-full;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-cs-accent text-cs-bg font-semibold px-6 py-3 rounded-lg;
+    @apply transition-all duration-200 hover:bg-yellow-400 active:scale-95;
+    @apply shadow-cs-accent;
+  }
+
+  .btn-secondary {
+    @apply bg-cs-card text-cs-text font-semibold px-6 py-3 rounded-lg;
+    @apply border border-cs-border transition-all duration-200;
+    @apply hover:border-cs-accent/50 hover:bg-cs-bg-secondary active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply text-cs-text-secondary font-medium px-4 py-2 rounded-lg;
+    @apply transition-all duration-200 hover:text-cs-text hover:bg-cs-card;
+  }
+
+  /* Input styles */
+  .input-base {
+    @apply bg-cs-card border border-cs-border text-cs-text rounded-lg px-4 py-3;
+    @apply placeholder:text-cs-text-secondary;
+    @apply focus:outline-none focus:border-cs-accent transition-colors duration-200;
+    @apply w-full;
+  }
+
+  /* Badge */
+  .rating-badge {
+    @apply inline-flex items-center gap-1 bg-cs-accent text-cs-bg font-bold text-sm px-2 py-0.5 rounded;
+  }
+
+  /* Horizontal scroll carousel */
+  .scroll-snap-x {
+    @apply flex gap-4 overflow-x-auto pb-4;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #292F3B transparent;
+  }
+
+  .scroll-snap-x > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  /* Glass morphism card */
+  .glass-card {
+    background: rgba(24, 29, 41, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(41, 47, 59, 0.8);
+  }
+
+  /* Tag pills */
+  .tag-pill {
+    @apply text-xs font-medium px-2.5 py-1 rounded-full bg-cs-bg-secondary text-cs-text-secondary border border-cs-border;
+  }
+
+  /* Genre badge */
+  .genre-badge {
+    @apply text-xs font-medium px-3 py-1 rounded-full;
+    @apply bg-cs-accent/10 text-cs-accent border border-cs-accent/20;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #F5C518, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Hide scrollbar while keeping scroll */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gradient border */
+  .border-gradient {
+    position: relative;
+    background: linear-gradient(#181D29, #181D29) padding-box,
+                linear-gradient(135deg, #F5C518, #F5C51800) border-box;
+    border: 1px solid transparent;
+  }
+}
